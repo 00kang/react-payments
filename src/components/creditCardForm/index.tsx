@@ -1,65 +1,18 @@
 import styled from "@emotion/styled";
-import InputOwnerName from "../input/InputOwnerName";
-import InputExpirationPeriod from "../input/InputExpirationPeriod";
-import { CardNumberValue, ExpirationPeriodValue } from "../../@types/CreditCard";
-import InputCreditCardNumber from "../input/InputCreditCardNumber";
-import { FormType, CARD_FORM_TYPE } from "../../constants/cardFormType";
 
 interface CreditCardFormProps {
   title: string;
   description?: string;
-  type: FormType;
-  inputValue: string | ExpirationPeriodValue | CardNumberValue;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputError: boolean;
+  children: React.ReactNode;
 }
 
-const CreditCardForm = ({
-  title,
-  description,
-  type,
-  inputValue,
-  handleChange,
-  inputError,
-}: CreditCardFormProps) => {
-  const getComponentByType = (
-    type: string,
-    inputValue: string | ExpirationPeriodValue | CardNumberValue,
-    handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  ) => {
-    if (type === CARD_FORM_TYPE.cardNumber)
-      return (
-        <InputCreditCardNumber
-          inputValue={inputValue as CardNumberValue}
-          handleChange={handleChange}
-          inputError={inputError}
-        />
-      );
-
-    if (type === CARD_FORM_TYPE.expirationPeriod)
-      return (
-        <InputExpirationPeriod
-          inputValue={inputValue as ExpirationPeriodValue}
-          handleChange={handleChange}
-          inputError={inputError}
-        />
-      );
-
-    if (type === CARD_FORM_TYPE.owner)
-      return (
-        <InputOwnerName
-          inputValue={inputValue as string}
-          handleChange={handleChange}
-          inputError={inputError}
-        />
-      );
-  };
-
+const CreditCardForm = ({ title, description, children, inputError }: CreditCardFormProps) => {
   return (
     <CreditCardFormContainer>
       <TitleWrapper>{title}</TitleWrapper>
-      <DescriptionWrapper>{description}</DescriptionWrapper>
-      {getComponentByType(type, inputValue, handleChange)}
+      <DescriptionWrapper description={description}>{description}</DescriptionWrapper>
+      {children}
       {inputError && <ErrorMessage>유효한 값을 입력하세요.</ErrorMessage>}
     </CreditCardFormContainer>
   );
@@ -81,17 +34,18 @@ const TitleWrapper = styled.h1`
   margin-bottom: 4px;
 `;
 
-const DescriptionWrapper = styled.h3`
+const DescriptionWrapper = styled.p<{ description?: string }>`
   font-family: Noto Sans KR;
   font-size: 9.5px;
   font-weight: 400;
   line-height: 13.76px;
   text-align: left;
   color: rgba(139, 149, 161, 1);
-  margin-bottom: 16px;
+  height: 14px;
+  ${({ description }) => (description ? `margin-bottom: 16px;` : `margin-bottom: 0;`)}
 `;
 
-const ErrorMessage = styled.h3`
+const ErrorMessage = styled.p`
   font-family: Noto Sans KR;
   font-size: 12px;
   font-weight: 400;
