@@ -5,10 +5,10 @@ import Payments from "./pages/Payments";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URLS}>
       <Routes>
         <Route path={routePath.home} element={<Payments />} />
-        <Route path={`${routePath.success}`} element={<PaymentsSuccess />} />
+        <Route path={routePath.success} element={<PaymentsSuccess />} />
       </Routes>
     </BrowserRouter>
   );
