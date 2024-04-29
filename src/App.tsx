@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path={routePath.home} element={<Payments />} />
-        <Route path={routePath.success} element={<PaymentsSuccess />} />
+        <Route path={`${routePath.success}`} element={<PaymentsSuccess />} />
       </Routes>
     </BrowserRouter>
   );

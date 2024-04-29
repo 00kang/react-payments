@@ -17,7 +17,6 @@ interface CardNumberFormProps {
 const CardNumberForm = ({
   cardNumber,
   setCardNumber,
-  setIsCardNumberValid,
   cardNumberError,
   setCardNumberError,
 }: CardNumberFormProps) => {
