@@ -5,7 +5,7 @@ import Payments from "./pages/Payments";
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URLS}>
+    <BrowserRouter basename="/react-payments/dist/">
       <Routes>
         <Route path={routePath.home} element={<Payments />} />
         <Route path={routePath.success} element={<PaymentsSuccess />} />
