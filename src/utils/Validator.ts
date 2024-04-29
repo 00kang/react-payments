@@ -31,7 +31,6 @@ const Validator = {
   checkCreditCardNumber(value: string) {
     const maxDigit = 4;
 
-
     if (ValidatorCondition.checkMaxDigit(value, maxDigit))
       return { isError: false, isValid: false };
     if (ValidatorCondition.checkMaxDigit(value, maxDigit))
@@ -50,9 +49,9 @@ const Validator = {
     const maxDigit = 2;
     const limitValue = 12;
 
-
     if (!ValidatorCondition.checkIsDigit(value)) {
       return { isError: true, isValid: false };
+    }
 
     if (ValidatorCondition.checkMaxDigit(value, maxDigit)) {
       return { isError: false, isValid: false };
